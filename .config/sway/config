@@ -90,6 +90,7 @@ exec swayidle -w \
     # for_window [window_type="dialog|toolbar|splash|menu|dropdown_menu|popup_menu|tooltip|notification"] floating enable
     for_window [app_id="blueman-manager"] floating enable, move position center;
     for_window [app_id="wdisplays"] floating enable, move position center;
+    for_window [app_id="org.gnome.Nautilus"] floating enable, move position center;
     for_window [app_id=mpv] sticky enable
 
 # Includes

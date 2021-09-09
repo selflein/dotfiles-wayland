@@ -1,0 +1,9 @@
+#!/bin/sh
+set -a
+[ -f $HOME/.config/sway/env ] && . "$HOME/.config/sway/env"
+set +a
+
+alias xdotool=ydotool
+
+echo "Running via sway-run"
+exec /usr/bin/sway --my-next-gpu-wont-be-nvidia

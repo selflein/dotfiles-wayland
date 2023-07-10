@@ -1,14 +1,25 @@
 profile dell-external {
     output eDP-1 disable
-    output "Dell Inc. Dell S2417DG VGGY4765071U"  scale 1
-    output "Philips Consumer Electronics Company 220P4LPY AU41343000755" scale 1
+    output "Dell Inc. DELL G3223Q 44273H3" scale 1.2
 }
 
-profile hp-external {
+profile both {
     output eDP-1 disable
+    output "Dell Inc. DELL G3223Q 44273H3" scale 1
     output "Unknown HP ENVY 27s 6CM82924QJ" scale 1.5
+}
+
+profile laptop-dell {
+    output eDP-1 disable
+    output "Dell Inc. DELL G3223Q 44273H3" scale 1.5
 }
 
 profile laptop {
     output eDP-1 enable scale 1.5
 }
+
+profile aoc {
+    output eDP-1 disable
+    output "AOC 2343 AITB9OA002195" enable scale 1
+}
+

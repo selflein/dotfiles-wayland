@@ -1,8 +1,10 @@
 exec mako > /tmp/mako.log 2>&1
 exec "nm-applet --indicator"
-exec nextcloud
+exec "nextcloud --background"
 exec libinput-gestures
 exec systemctl --user import-environment
+exec "$term --class=dropdown"
+# exec "/usr/libexec/polkit-gnome-authentication-agent-1"
 
 exec_always pkill kanshi; exec kanshi > /tmp/kanshi.log 2>&1
 exec_always autotiling > /tmp/autotiling.log 2>&1

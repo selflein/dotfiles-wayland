@@ -18,7 +18,7 @@ set $down j
 set $up k
 set $right l
 
-set $term gnome-terminal
+set $term kitty --detach
 
 # Application Launcher
 # set $menu "wofi --dmenu -I -m -i"
@@ -26,11 +26,11 @@ set $menu "rofi -combi-modi drun,window,run -show combi -modi combi"
 
 ### Idle configuration
 exec swayidle -w \
-        timeout 300 $lock \
-        timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-        timeout 1800 'systemctl suspend' \
         lock $lock \
-        before-sleep $lock
+        before-sleep $lock \
+        timeout 300 $lock \
+        timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+        timeout 1440 'systemctl suspend' \
 
 
 ### Key bindings
@@ -43,9 +43,13 @@ exec swayidle -w \
 
     bindsym $mod+d exec $menu
     bindsym $mod+Return exec $term
-    
+
+
+    bindsym $mod+Shift+Return [app_id="dropdown"] scratchpad show, resize set 60 ppt 40 ppt, move position 20 ppt 1 ppt
+    for_window [app_id="dropdown"] floating enable, resize set 60 ppt 40 ppt, move position 20 ppt 1 ppt, move scratchpad
+
     # Floating terminal
-    bindsym $mod+Shift+Return exec '$term --title=floating'
+    bindsym $mod+Ctrl+Return exec '$term --title=floating'
     for_window [title="floating"] floating enable
 
     bindsym Alt+Tab exec "rofi -show window"
@@ -80,7 +84,7 @@ exec swayidle -w \
     bindsym $mod+Print exec grim -g "$(slurp)" - | swappy -f -
 
     bindsym $mod+Tab workspace back_and_forth
-    bindsym $mod+p exec --locked 'swaymsg "output * dpms on"; kanshi'
+    bindsym $mod+p exec --locked 'swaymsg "output * power on"; kanshi'
 
 
 # Window rules
@@ -92,6 +96,8 @@ exec swayidle -w \
     for_window [app_id="wdisplays"] floating enable, move position center;
     for_window [app_id="org.gnome.Nautilus"] floating enable, move position center;
     for_window [app_id=mpv] sticky enable
+
+
 
 # Includes
     # Workspace keybind
